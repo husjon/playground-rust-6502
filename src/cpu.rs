@@ -56,4 +56,10 @@ impl CPU {
             next_stage: Stage::Fetch,
         }
     }
+
+    pub fn reset(&mut self) -> Self {
+        self.memory.reset();
+        Self::new()
+    }
+
 }
