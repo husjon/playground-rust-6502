@@ -22,8 +22,6 @@ pub struct CPU {
     next_stage: Stage,
 }
 
-#[derive(Debug)]
-#[allow(dead_code)]
 pub struct Flags {
     c: bool, // Carry
     z: bool, // Zero
@@ -32,4 +30,30 @@ pub struct Flags {
     b: bool, // Break Command
     v: bool, // Overflow
     n: bool, // Negative
+}
+
+impl CPU {
+    pub fn new() -> Self {
+        Self {
+            pc: 0x0,
+            sp: 0x0,
+            a: 0x0,
+            x: 0x0,
+            y: 0x0,
+
+            ps: Flags {
+                c: false,
+                z: false,
+                i: false,
+                d: false,
+                b: false,
+                v: false,
+                n: false,
+            },
+
+            memory: Memory::new(64 * 1024),
+            // remaining_cycles: 0,
+            next_stage: Stage::Fetch,
+        }
+    }
 }
